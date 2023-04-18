@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Nijat Gasimov" />
+
+<meta name="date" content="2020-12-04" />
+
+<title>Journal (reproducible report)</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">MyLabJournal</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="journal.html">Journal</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Class notes
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="dictionary.html">Dictionary</a>
+    </li>
+    <li>
+      <a href="data_wrangling.html">Data Wrangling</a>
+    </li>
+    <li>
+      <a href="ggplot_graphs.html">ggplot graphs</a>
+    </li>
+    <li>
+      <a href="machine_learning.html">machine learning</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="links.html">Links</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Journal (reproducible report)</h1>
+<h4 class="author">Nijat Gasimov</h4>
+<h4 class="date">2020-12-04</h4>
+
+</div>
+
+
+<div id="challenge-1" class="section level1">
+<h1><span class="header-section-number">1</span> Challenge 1</h1>
+<p>Code for the first Challenge, sales by state are given below.</p>
+<div id="loading-libraries" class="section level3">
+<h3><span class="header-section-number">1.0.1</span> Loading libraries</h3>
+<pre class="r"><code>library(tidyverse)
+library(readxl)
+library(lubridate)</code></pre>
+</div>
+<div id="importing-excel-data" class="section level3">
+<h3><span class="header-section-number">1.0.2</span> Importing Excel data</h3>
+<pre class="r"><code>bikes_c1_tbl &lt;- read_excel(path = &quot;data-science/00_data/01_bike_sales/01_raw_data/bikes.xlsx&quot;)
+orderlines_c1_tbl &lt;- read_excel(path = &quot;data-science/00_data/01_bike_sales/01_raw_data/orderlines.xlsx&quot;)
+bikeshops_c1_tbl  &lt;- read_excel(path = &quot;data-science/00_data/01_bike_sales/01_raw_data/bikeshops.xlsx&quot;)</code></pre>
+</div>
+<div id="joining-data" class="section level3">
+<h3><span class="header-section-number">1.0.3</span> Joining data</h3>
+<pre class="r"><code>left_join(orderlines_c1_tbl, bikes_c1_tbl, by = c(&quot;product.id&quot; = &quot;bike.id&quot;))</code></pre>
+<pre><code>## # A tibble: 15,644 x 15
+##    ...1  order.id order.line order.date          customer.id product.id quantity
+##    &lt;chr&gt;    &lt;dbl&gt;      &lt;dbl&gt; &lt;dttm&gt;                    &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
+##  1 1            1          1 2015-01-07 00:00:00           2       2681        1
+##  2 2            1          2 2015-01-07 00:00:00           2       2411        1
+##  3 3            2          1 2015-01-10 00:00:00          10       2629        1
+##  4 4            2          2 2015-01-10 00:00:00          10       2137        1
+##  5 5            3          1 2015-01-10 00:00:00           6       2367        1
+##  6 6            3          2 2015-01-10 00:00:00           6       1973        1
+##  7 7            3          3 2015-01-10 00:00:00           6       2422        1
+##  8 8            3          4 2015-01-10 00:00:00           6       2655        1
+##  9 9            3          5 2015-01-10 00:00:00           6       2247        1
+## 10 10           4          1 2015-01-11 00:00:00          22       2408        1
+## # ... with 15,634 more rows, and 8 more variables: model &lt;chr&gt;,
+## #   model.year &lt;dbl&gt;, frame.material &lt;chr&gt;, weight &lt;dbl&gt;, price &lt;dbl&gt;,
+## #   category &lt;chr&gt;, gender &lt;chr&gt;, url &lt;chr&gt;</code></pre>
+<pre class="r"><code>bike_orderlines_joined_c1_tbl &lt;- orderlines_c1_tbl %&gt;%
+  left_join(bikes_c1_tbl, by = c(&quot;product.id&quot; = &quot;bike.id&quot;)) %&gt;%
+  left_join(bikeshops_c1_tbl, by = c(&quot;customer.id&quot; = &quot;bikeshop.id&quot;))</code></pre>
+</div>
+<div id="wrangling-data" class="section level3">
+<h3><span class="header-section-number">1.0.4</span> Wrangling data</h3>
+<p>Create new data in which you wrangle combined data:</p>
+<pre class="r"><code>bike_orderlines_wrangled_c1_tbl &lt;- bike_orderlines_joined_c1_tbl %&gt;%
+  
+  #separating into city and state categories
+  separate(col    = location,
+           into   = c(&quot;city&quot;, &quot;state&quot;),
+           sep    = &quot;, &quot;) %&gt;%
+  
+  #add new column to show total price  
+  mutate(total.price = price * quantity) %&gt;%
+  
+  #erase unneeded columns    
+  select(-...1, -gender, -url, -lat, -lng, -frame.material, -weight)</code></pre>
+</div>
+<div id="take-out-needed-data" class="section level3">
+<h3><span class="header-section-number">1.0.5</span> Take out needed data</h3>
+<pre class="r"><code>sales_by_state_c1_tbl &lt;- bike_orderlines_wrangled_c1_tbl %&gt;%
+  select(state, total.price) %&gt;% #select the columns you&#39;ll use
+  group_by(state) %&gt;% #group the rows based on common states
+  summarize(sales = sum(total.price)) %&gt;% #sum up the sales by state
+  mutate(sales_text = scales::dollar(sales, big.mark = &quot;.&quot;, 
+                                     decimal.mark = &quot;,&quot;, 
+                                     prefix = &quot;&quot;, 
+                                     suffix = &quot; €&quot;)) #turn the numbers to money format</code></pre>
+</div>
+<div id="plot-the-graph" class="section level3">
+<h3><span class="header-section-number">1.0.6</span> Plot the graph</h3>
+<pre class="r"><code>sales_by_state_c1_tbl %&gt;%
+  
+  # Setup canvas with the columns state (x-axis) and sales (y-axis)
+  ggplot(aes(x = state, y = sales)) + 
+  geom_col(fill = &quot;#2DC6D6&quot;) + # Use geom_col for a bar plot
+  geom_label(aes(label = sales_text)) + # Adding labels to the bars
+  scale_y_continuous(labels = scales::dollar_format(big.mark = &quot;.&quot;, 
+                                                    decimal.mark = &quot;,&quot;, 
+                                                    prefix = &quot;&quot;, 
+                                                    suffix = &quot; €&quot;)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) #rotate the x-axis</code></pre>
+<p><img src="journal_files/figure-html/plot-1.png" width="960" /></p>
+</div>
+</div>
+<div id="challenge-2" class="section level1">
+<h1><span class="header-section-number">2</span> Challenge 2</h1>
+<p>We will continue building on the previous code, so some steps are not needed to be repeated again.</p>
+<div id="manipulate-data-for-new-graph" class="section level3">
+<h3><span class="header-section-number">2.0.1</span> Manipulate data for new graph</h3>
+<pre class="r"><code>sales_by_state_and_year_c1_tbl &lt;- bike_orderlines_wrangled_c1_tbl %&gt;% #create new data for visualization
+  select(order.date, total.price, state) %&gt;% #take out needed column from for the new data
+  mutate(year = year(order.date)) %&gt;% #add a year column using lubridate
+  group_by(year, state) %&gt;%
+  summarise(sales = sum(total.price)) %&gt;%
+  ungroup() %&gt;%
+  
+  mutate(sales_text = scales::dollar(sales, big.mark = &quot;.&quot;, 
+                                     decimal.mark = &quot;,&quot;, 
+                                     prefix = &quot;&quot;, 
+                                     suffix = &quot; €&quot;)) #formatting the money</code></pre>
+</div>
+<div id="visualizing-the-data" class="section level3">
+<h3><span class="header-section-number">2.0.2</span> Visualizing the data</h3>
+<pre class="r"><code>sales_by_state_and_year_c1_tbl %&gt;%
+  ggplot(aes(x = year, y = sales, fill = state))+ #create the plot
+  geom_col() +  #define plot type
+  facet_wrap(~ state)+  #to form a different plot for each state
+  scale_y_continuous(labels = scales::dollar_format(big.mark = &quot;.&quot;, 
+                                                  decimal.mark = &quot;,&quot;, 
+                                                  prefix = &quot;&quot;, 
+                                                  suffix = &quot; €&quot;)) #formatting</code></pre>
+<p><img src="journal_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>  #theme(axis.text.x = element_text(angle = 70, hjust = 1)) #rotate the x-axis label</code></pre>
+</div>
+</div>
+<div id="challenge-3" class="section level1">
+<h1><span class="header-section-number">3</span> Challenge 3</h1>
+<p>For this task, I will access to Deezer (music streaming platform) API and extract my Retro music playlist which I created in 2014.</p>
+<div id="load-the-libraries" class="section level3">
+<h3><span class="header-section-number">3.0.1</span> Load the libraries</h3>
+<pre class="r"><code>library(httr)
+library(tidyverse)
+library(jsonlite)
+library(purrr)</code></pre>
+</div>
+<div id="make-request-from-api" class="section level3">
+<h3><span class="header-section-number">3.0.2</span> Make request from API</h3>
+<pre class="r"><code>resp &lt;- GET(&quot;https://api.deezer.com/playlist/1000960231&quot;)
+resp_content &lt;- content(resp, as = &quot;parsed&quot;)</code></pre>
+</div>
+<div id="wrangle-data" class="section level3">
+<h3><span class="header-section-number">3.0.3</span> Wrangle data</h3>
+<pre class="r"><code>a &lt;- resp_content[[&quot;tracks&quot;]][[&quot;data&quot;]] #Extract the list containing song information
+
+#Extract song titles from the list
+Titels &lt;- a %&gt;%
+  map(purrr::pluck,&quot;title&quot;) %&gt;% 
+  as_tibble(&quot;titel&quot;) %&gt;% #save as tibble
+  t() #list is given in rows, transverse it to column
+  
+#Extract album names from the list
+Albums &lt;- a %&gt;%
+  map(purrr::pluck, &quot;album&quot;) %&gt;%
+  map(purrr::pluck, &quot;title&quot;) %&gt;%
+  as_tibble(&quot;Album&quot;) %&gt;%
+  t()
+
+#Extract the artist names from the list
+Artists &lt;- a %&gt;%
+  map(purrr::pluck, &quot;artist&quot;) %&gt;%
+  map(purrr::pluck, &quot;name&quot;) %&gt;%
+  as_tibble(&quot;Artist&quot;) %&gt;%
+  t()
+
+#Extract links to individual songs
+Links &lt;- a %&gt;%
+  map(purrr::pluck, &quot;link&quot;) %&gt;%
+  as_tibble(&quot;Link&quot;) %&gt;%
+  t()
+   
+#Finally, bind columns into a table and name them
+Playlist &lt;- bind_cols(&quot;Song&quot;=Titels, &quot;Album&quot;= Albums, &quot;Artist&quot;=Artists, &quot;Link&quot;=Links)</code></pre>
+</div>
+<div id="data" class="section level3">
+<h3><span class="header-section-number">3.0.4</span> Data</h3>
+<pre class="r"><code>Playlist</code></pre>
+<pre><code>## # A tibble: 175 x 4
+##    Song[,1]       Album[,1]                    Artist[,1]     Link[,1]          
+##    &lt;chr&gt;          &lt;chr&gt;                        &lt;chr&gt;          &lt;chr&gt;             
+##  1 You            MAD MEN (Music used in the ~ The Aquatones  https://www.deeze~
+##  2 Mrs.Robinson   60&#39;s Party                   The 60&#39;s Pop ~ https://www.deeze~
+##  3 Gospel         Boxer                        The National   https://www.deeze~
+##  4 Between the B~ Kill Rock Stars Sampler 2009 Elliott Smith  https://www.deeze~
+##  5 Heroes (1999 ~ Heroes (1999 Remaster)       David Bowie    https://www.deeze~
+##  6 It&#39;s Too Late  Tapestry (Legacy Edition)    Carole King    https://www.deeze~
+##  7 Asleep (2011 ~ The World Won&#39;t Listen       The Smiths     https://www.deeze~
+##  8 Come On Eileen Too Rye Ay                   Dexys Midnigh~ https://www.deeze~
+##  9 Low            Get On With It: The Best Of  Cracker        https://www.deeze~
+## 10 Right Here Wa~ Repeat Offender              Richard Marx   https://www.deeze~
+## # ... with 165 more rows</code></pre>
+</div>
+</div>
+<div id="challenge-4" class="section level1">
+<h1><span class="header-section-number">4</span> Challenge 4</h1>
+<pre class="r"><code>#1 Loading libraries
+  
+library(tidyverse) # Main Package - Loads dplyr, purrr, etc.
+library(rvest)     # HTML Hacking &amp; Web Scraping
+library(xopen)     # Quickly opening URLs
+library(jsonlite)  # converts JSON files to R objects
+library(glue)      # concatenate strings
+library(stringi)   # character string/text processing
+library(RSQLite)   # working with databases
+
+# 2. Open category page 
+
+# Arbitrarily chosen E-bike family, Mountainbike category
+
+url_homepage &lt;- &quot;https://www.radon-bikes.de/e-bike/mountainbike/bikegrid/&quot;
+#xopen(url_homepage)
+html_homepage &lt;- read_html(url_homepage)
+
+
+# 3. Scrape website
+
+#Extract the product ID names
+product_id_tbl &lt;- html_homepage %&gt;%
+  html_nodes(css = &quot;.m-bikegrid__info .a-heading--small&quot;) %&gt;%
+  html_text() %&gt;%
+  trimws(&quot;both&quot;) %&gt;% # erase empty space
+  enframe(name = &quot;position&quot;, value = &quot;product_id&quot;) #vector to tibble
+
+#Extract the product prices
+product_prices_tbl &lt;- html_homepage %&gt;%
+  html_nodes(css = &quot;.currency_eur&gt; .m-bikegrid__price--active&quot;) %&gt;%
+  html_text(&quot;span&quot;) %&gt;% # extract span attribute
+  enframe(name = &quot;position&quot;, value = &quot;product_prices&quot;) #vector to tibble
+
+#Bind two columns
+mountainbike_list_tbl &lt;- product_id_tbl %&gt;%
+  bind_cols(product_prices_tbl %&gt;% select(&quot;product_prices&quot;))
+
+# 4. Creating database
+
+# Create database
+con &lt;- RSQLite::dbConnect(drv    = SQLite(), 
+                           dbname = &quot;data-science/00_data/Mountain_bikes.sqlite&quot;)
+# Add tables to database
+dbWriteTable(con, &quot;product_id&quot;, product_id_tbl, overwrite=TRUE)
+dbWriteTable(con, &quot;product_prices&quot;, product_prices_tbl, overwrite=TRUE)
+
+# 5. Call database
+
+# Return the name of tables
+dbListTables(con)</code></pre>
+<pre><code>## [1] &quot;product_id&quot;     &quot;product_prices&quot;</code></pre>
+<pre class="r"><code># Return any data you need
+tbl(con, &quot;product_id&quot;)</code></pre>
+<pre><code>## # Source:   table&lt;product_id&gt; [?? x 2]
+## # Database: sqlite 3.33.0 [C:\Users\ACER\Google Drive\Studies\Business &amp;
+## #   Management\Data
+## #   Science\Repository\ws20-business-data-science-basics---lab-journal-nijatgasimovv\data-science\00_data\Mountain_bikes.sqlite]
+##    position product_id                        
+##       &lt;int&gt; &lt;chr&gt;                             
+##  1        1 RENDER 8.0                        
+##  2        2 RENDER 9.0                        
+##  3        3 RENDER 10.0                       
+##  4        4 RENDER 10.0 HD SUPREME            
+##  5        5 JEALOUS AL HYBRID 8.0             
+##  6        6 JEALOUS AL HYBRID 8.0             
+##  7        7 JEALOUS AL HYBRID 9.0             
+##  8        8 ZR TEAM HYBRID 6.0 CX 500         
+##  9        9 ZR TEAM HYBRID 8.0 CX 500         
+## 10       10 ZR TEAM HYBRID PERFORMANCE 7.0 500
+## # ... with more rows</code></pre>
+<pre class="r"><code>tbl(con, &quot;product_prices&quot;)</code></pre>
+<pre><code>## # Source:   table&lt;product_prices&gt; [?? x 2]
+## # Database: sqlite 3.33.0 [C:\Users\ACER\Google Drive\Studies\Business &amp;
+## #   Management\Data
+## #   Science\Repository\ws20-business-data-science-basics---lab-journal-nijatgasimovv\data-science\00_data\Mountain_bikes.sqlite]
+##    position product_prices
+##       &lt;int&gt; &lt;chr&gt;         
+##  1        1 4199 €        
+##  2        2 4999 €        
+##  3        3 5799 €        
+##  4        4 6799 €        
+##  5        5 2699 €        
+##  6        6 2699 €        
+##  7        7 2999 €        
+##  8        8 1999 €        
+##  9        9 2299 €        
+## 10       10 1699 €        
+## # ... with more rows</code></pre>
+<pre class="r"><code># Disconnect from database after use
+dbDisconnect(con)
+con</code></pre>
+<pre><code>## &lt;SQLiteConnection&gt;
+##   DISCONNECTED</code></pre>
+</div>
+<div id="challenge-5" class="section level1">
+<h1><span class="header-section-number">5</span> Challenge 5</h1>
+<div id="question-1" class="section level2">
+<h2><span class="header-section-number">5.1</span> Question 1</h2>
+<pre class="r"><code># 1. Load libraries
+
+library(tidyverse)
+library(vroom)
+library(data.table)
+library(lubridate)
+
+# 2. Data import
+
+# 2.1 Load Assignee data
+
+# Includes datasets for all 3 tasks
+col_types_ass &lt;- list(
+  id = col_character(),
+  type = col_character(),
+  name_first = col_character(),
+  name_last = col_character(),
+  organization = col_character()
+)
+
+
+assignee_tbl &lt;- vroom(
+  file       = &quot;assignee.tsv/assignee.tsv&quot;, 
+  delim      = &quot;\t&quot;, 
+  col_types  = col_types_ass,
+  na         = c(&quot;&quot;, &quot;NA&quot;, &quot;NULL&quot;)
+)
+
+
+
+# 2.2 Load Patent Assignee data
+
+col_types_pat_ass &lt;- list(
+  patent_id = col_character(),
+  assignee_id = col_character(),
+  location_id = col_character()
+)
+
+
+patent_ass_tbl &lt;- vroom(
+  file       = &quot;patent_assignee.tsv/patent_assignee.tsv&quot;, 
+  delim      = &quot;\t&quot;, 
+  col_types  = col_types_pat_ass,
+  na         = c(&quot;&quot;, &quot;NA&quot;, &quot;NULL&quot;)
+)
+    
+
+# 2.3 Load Patent data
+
+#col_types_patent &lt;- list(
+#  id = col_character(),
+#  type = col_character(),
+#  number = col_character(),
+#  country = col_character(),
+#  date = col_date(&quot;%Y-%m-%d&quot;),
+#  abstract = col_character(),
+#  title = col_character(),
+#  kind = col_character(),
+#  num_claims = col_double(),
+#  filename = col_character(),
+#  withdrawn = col_double()
+#)
+
+#patent_tbl &lt;- vroom(
+#  file       = &quot;patent.tsv&quot;, 
+#  delim      = &quot;\t&quot;, 
+#  col_types  = col_types_patent,
+#  na         = c(&quot;&quot;, &quot;NA&quot;, &quot;NULL&quot;)
+#)
+
+
+
+# 2.4 Load uspc data
+
+#col_types_uspc &lt;- list(
+#  uuid = col_character(),
+#  patent_id = col_character(),
+#  mainclass_id = col_character(),
+#  subclass_id = col_character(),
+#  sequence = col_character()
+#)
+
+#uspc_tbl &lt;- vroom(
+#  file = &quot;uspc.tsv&quot;,
+#  delim      = &quot;\t&quot;, 
+#  col_types  = col_types_uspc,
+#  na         = c(&quot;&quot;, &quot;NA&quot;, &quot;NULL&quot;)
+#  )
+
+# 3. Convert to data.table (optionally added to use if needed)
+#class(assignee_tbl)
+#setDT(assignee_tbl)
+#class(assignee_tbl)
+#assignee_tbl %&gt;% glimpse()
+
+#class(patent_ass_tbl)
+#setDT(patent_ass_tbl)
+#class(patent_ass_tbl)
+#patent_ass_tbl %&gt;% glimpse()
+
+
+# 4. Question 1
+
+# 4.1 Merging data
+
+# Combining two datasets
+combined_data &lt;- patent_ass_tbl %&gt;%
+  left_join(assignee_tbl, by = c(&quot;assignee_id&quot; = &quot;id&quot;))
+
+# 4.2 Wrangle data
+
+top_companies_tbl &lt;- combined_data %&gt;%
+  filter(type == 2) %&gt;% # Filtering US organizations
+  group_by(organization) %&gt;%
+  count() %&gt;%
+  ungroup() %&gt;%
+  arrange(desc(n))
+
+print(top_companies_tbl, n=10)</code></pre>
+<pre><code>## # A tibble: 222,788 x 2
+##    organization                                     n
+##    &lt;chr&gt;                                        &lt;int&gt;
+##  1 International Business Machines Corporation 139091
+##  2 General Electric Company                     47121
+##  3 Intel Corporation                            42156
+##  4 Hewlett-Packard Development Company, L.P.    35572
+##  5 Microsoft Corporation                        30085
+##  6 Micron Technology, Inc.                      28000
+##  7 QUALCOMM Incorporated                        24702
+##  8 Texas Instruments Incorporated               24181
+##  9 Xerox Corporation                            23173
+## 10 Apple Inc.                                   21820
+## # ... with 222,778 more rows</code></pre>
+</div>
+<div id="question-2" class="section level2">
+<h2><span class="header-section-number">5.2</span> Question 2</h2>
+<p>For Questions 2 and 3, I will only present my code. Datasets were too large to handle for my computer, and it kept crashing no matter how many tries. I am not sure if these codes would work if run, but general idea for the solution to the problem is presented.</p>
+<pre class="r"><code># 5.1 Merging data
+
+#combined_data_2 &lt;- combined_data %&gt;%
+#  left_join(patent_tbl, by = c(&quot;patent_id&quot; = &quot;id&quot;))
+
+# 5.2 Wrangle data
+#top_companies_2019_tbl &lt;- combined_data_2 %&gt;%
+#  filter(type == 2) %&gt;% # filtering US companies
+#  filter(date == year(2019)) %&gt;% # filtering the year 2019 with lubridate
+#           group_by(organization) %&gt;%
+#           count() %&gt;%
+#           ungroup() %&gt;%
+#           arrange(desc(n))
+#
+#print(top_companies_2019_tbl, n=10)</code></pre>
+</div>
+<div id="question-3" class="section level2">
+<h2><span class="header-section-number">5.3</span> Question 3</h2>
+<pre class="r"><code># 6.1 Merging data
+
+#combined_data_3 &lt;- combined_data %&gt;%
+#  left_join(uspc_tbl, by = c(&quot;patent_id&quot; = &quot;id&quot;))
+
+# 6.2 Wrangle data
+
+#global_companies &lt;- combined_data_3 %&gt;%
+#  filter(type == 2  | type == 3) %&gt;%
+#  unique(by=&quot;id&quot;)
+
+
+#global_top10 &lt;- global_companies %&gt;%
+#  group_by(organization) %&gt;%
+#  count(organization, sort=TRUE, name = &quot;number_patent&quot;) %&gt;%
+#  ungroup() %&gt;%
+#  arrange(desc(n))
+#  head(10)
+
+#top5_uspto &lt;- semi_join(global_companies, global_top10, by = organization) %&gt;%
+#  count(mainclass_id, sort=TRUE, name=&#39;n&#39;) %&gt;%
+#  head(5)
+  
+#top5_uspto</code></pre>
+</div>
+</div>
+<div id="challenge-6" class="section level1">
+<h1><span class="header-section-number">6</span> Challenge 6</h1>
+<pre class="r"><code># 1. Load libraries and dataset
+library(tidyverse)
+library(lubridate)
+
+
+covid_data_tbl &lt;- read_csv(&quot;https://opendata.ecdc.europa.eu/covid19/casedistribution/csv&quot;)
+
+# 2. Data wrangling
+
+covid_wrangled_data_tbl &lt;- covid_data_tbl %&gt;%
+  filter(year == 2020) %&gt;% # only 2020 data will be displayed
+  select(dateRep, day, month, cases, countriesAndTerritories) %&gt;% 
+  rename (country = countriesAndTerritories) %&gt;% # for ease of coding
+  mutate(date_2 = lubridate::dmy(dateRep)) %&gt;% # create another date column in correct form as input for visualization
+  filter(country == &quot;Germany&quot;| country ==&quot;France&quot;|country == &quot;United_Kingdom&quot;|country ==&quot;United_States_of_America&quot;|country == &quot;Spain&quot;) %&gt;%
+  
+  arrange(day) %&gt;%
+  arrange(month) %&gt;% # arranging in chronological order
+
+  group_by(country) %&gt;%
+  mutate(cum_num = cumsum(cases)) %&gt;% # cumulative sum of COVID cases per country
+  ungroup() %&gt;% 
+  
+  group_by(country) %&gt;%
+  arrange(country) %&gt;% # arrange the list country-by-country
+  ungroup()
+
+# 3. Data visualization
+
+covid_wrangled_data_tbl %&gt;%
+  ggplot(aes(date_2, cum_num, color = country)) +
+  geom_line(size=0.8, aes(color = country)) +
+
+
+# 4. Formatting
+  
+  scale_x_date(date_labels = &quot;%b&quot;, date_breaks = &quot;1 month&quot;) + # each month will be displayed in graph with names
+  theme(
+    axis.text.x = element_text(
+      angle = 
+        60,
+      hjust = 1)# tilt for ease of reading
+    ) +
+  scale_colour_manual(values = c(&quot;purple&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;orange&quot;, &quot;red&quot;))+ # manually select colors of lines
+  #scale_color_brewer(RColorBrewer::brewer.pal(n = 5, name = &quot;Accent&quot;)[5])+ # or alternatively select a color brewer
+  scale_y_continuous(breaks = seq(0, 15000000, by=2500000),  # display cases with 2.5 million case breaks
+                     labels = scales::dollar_format(scale = 1e-6, 
+                                                    prefix = &quot;&quot;,
+                                                    suffix = &quot; M&quot;)) +
+  labs(
+    title = &quot;Cumulative COVID-19 cases in 5 western countries&quot;,
+    subtitle = &quot; &quot;,
+    caption = &quot;As shown, the numbers in USA are growing exponentially&quot;,
+    x = &quot;Year 2020&quot;,
+    y = &quot;Cumulative Cases&quot;,
+    color = &quot;Countries:&quot; # Legend text
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = &quot;bottom&quot;,
+    plot.title = element_text(face = &quot;bold&quot;),
+    plot.caption = element_text(face = &quot;bold.italic&quot;)
+  ) </code></pre>
+<p><img src="journal_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
+<div id="challenge-7" class="section level1">
+<h1><span class="header-section-number">7</span> Challenge 7</h1>
+<pre class="r"><code># 1. Load libraries and dataset
+
+library(tidyverse)
+library(maps)
+library(scales)
+library(ggplot2)
+
+covid_data_tbl &lt;- read_csv(&quot;https://opendata.ecdc.europa.eu/covid19/casedistribution/csv&quot;)
+world &lt;- map_data(&quot;world&quot;)
+
+# 2. Wrangle data
+
+map_data_tbl &lt;- covid_data_tbl %&gt;%
+  select(deaths, countriesAndTerritories, popData2019) %&gt;%
+  group_by(countriesAndTerritories, popData2019) %&gt;%
+  summarise(total_death = sum(deaths)) %&gt;%
+  ungroup() %&gt;%
+  mutate(dead_by_pop = 100*(total_death / popData2019)) %&gt;% #percentage
+  
+  mutate(across(countriesAndTerritories, str_replace_all, &quot;_&quot;, &quot; &quot;)) %&gt;%
+  mutate(countriesAndTerritories = case_when(
+    
+    countriesAndTerritories == &quot;United Kingdom&quot; ~ &quot;UK&quot;,
+    countriesAndTerritories == &quot;United States of America&quot; ~ &quot;USA&quot;,
+    countriesAndTerritories == &quot;Czechia&quot; ~ &quot;Czech Republic&quot;,
+    TRUE ~ countriesAndTerritories
+  ))
+  
+joined_data &lt;-right_join(map_data_tbl, world, by=c(&quot;countriesAndTerritories&quot;=&quot;region&quot;))
+  
+
+# 3. Visualize data
+
+joined_data %&gt;% 
+  ggplot() +
+  geom_map(aes(map_id = countriesAndTerritories, 
+               x=long, 
+               y=lat), 
+           map = world) +
+  
+  geom_map(aes(fill = dead_by_pop, 
+               map_id = countriesAndTerritories), 
+           map = world) +
+  
+  scale_fill_gradient(low = &quot;red&quot;, 
+                      high = &quot;black&quot;,
+                      na.value = &quot;grey&quot;,
+                      name = &quot;Mortality Rate (%)&quot;)+
+  
+  labs(
+    title = &quot;Confirmed COVID-19 deaths relative to the size of the population&quot;,
+    caption = &quot;Date: 12 December 2020&quot;,
+    x = &quot;&quot;,
+    y = &quot;&quot;) +
+  theme_minimal()</code></pre>
+<p><img src="journal_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

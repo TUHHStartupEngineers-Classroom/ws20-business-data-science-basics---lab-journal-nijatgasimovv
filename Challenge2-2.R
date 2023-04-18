@@ -1,0 +1,65 @@
+
+
+#1 Loading libraries
+  
+library(tidyverse) # Main Package - Loads dplyr, purrr, etc.
+library(rvest)     # HTML Hacking & Web Scraping
+library(xopen)     # Quickly opening URLs
+library(jsonlite)  # converts JSON files to R objects
+library(glue)      # concatenate strings
+library(stringi)   # character string/text processing
+library(RSQLite)   # working with databases
+
+# 2. Open category page 
+
+# Arbitrarily chosen E-bike family, Mountainbike category
+
+url_homepage <- "https://www.radon-bikes.de/e-bike/mountainbike/bikegrid/"
+#xopen(url_homepage)
+html_homepage <- read_html(url_homepage)
+
+
+# 3. Scrape website
+
+#Extract the product ID names
+product_id_tbl <- html_homepage %>%
+  html_nodes(css = ".m-bikegrid__info .a-heading--small") %>%
+  html_text() %>%
+  trimws("both") %>% # erase empty space
+  enframe(name = "position", value = "product_id") #vector to tibble
+
+#Extract the product prices
+product_prices_tbl <- html_homepage %>%
+  html_nodes(css = ".currency_eur> .m-bikegrid__price--active") %>%
+  html_text("span") %>% # extract span attribute
+  enframe(name = "position", value = "product_prices") #vector to tibble
+
+#Bind two columns
+mountainbike_list_tbl <- product_id_tbl %>%
+  bind_cols(product_prices_tbl %>% select("product_prices"))
+
+# 4. Creating database
+
+# Create database
+con <- RSQLite::dbConnect(drv    = SQLite(), 
+                           dbname = "data-science/00_data/Mountain_bikes.sqlite")
+# Add tables to database
+dbWriteTable(con, "product_id", product_id_tbl, overwrite=TRUE)
+dbWriteTable(con, "product_prices", product_prices_tbl, overwrite=TRUE)
+
+# 5. Call database
+
+# Return the name of tables
+dbListTables(con)
+
+# Return any data you need
+tbl(con, "product_id")
+
+tbl(con, "product_prices")
+
+
+# Disconnect from database after use
+dbDisconnect(con)
+con
+
+
